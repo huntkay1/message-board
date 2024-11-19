@@ -19,4 +19,9 @@ async function getMessageById(messageId) {
     return messages.find(msg => msg.id === messageId);
 }
 
-module.exports = { getMessageById, messages }
+function addNewMessage(message) {
+    const newId = messages.length > 0 ? messages[messages.length - 1].id + 1 : 1;
+    messages.push({ id: newId, text: message.message, user: message.userName, added: date });
+}
+
+module.exports = { getMessageById, messages, addNewMessage }
