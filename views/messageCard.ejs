@@ -1,8 +1,10 @@
 
-<div>
-    <h2><%= message.user %></h2>
-    <p><%= message.text %></p>
-    <p><%= message.added %></p>
+<div class="card">
+    
+    <div>
+        <h2><%= message.user %></h2>
+        <p><%= message.added %></p>
+    </div>
+    
+    <a href="message/<%= message.id %>"><button>Open</button></a>
 </div>
-
-<a href="message/<%= message.id %>"><button>Open Message</button></a>

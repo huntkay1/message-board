@@ -4,14 +4,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
+        <link rel="stylesheet" href="/index.css">
     </head>
     <body>
-        <a href="new">
-            <span> New Message </span>
-        </a>
+        <div class="home">
 
-        <% messages.forEach((message) => { %>
-            <%- include('messageCard', { message: message }); %>
-        <% }); %>
+            <%- include('header') %>
+
+            <div class="main">
+
+                <a href="new">
+                    <button class="newMessageBttn"> New Message </button>
+                </a>
+
+                <div class="messagesContainer">
+                    <% messages.forEach((message) => { %>
+                        <%- include('messageCard', { message: message }); %>
+                    <% }); %>
+                </div>
+
+            </div>
+        </div>
     </body>
 </html>
