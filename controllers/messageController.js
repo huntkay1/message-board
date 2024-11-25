@@ -2,17 +2,19 @@ const asyncHandler = require("express-async-handler");
 const db = require('../db/queries');
 
 
-// const getMessageById = asyncHandler(async (req, res) => {
-//     const messageId = parseInt(req.params.id, 10);
+const getMessageById = asyncHandler(async (req, res) => {
+    const messageId = parseInt(req.params.id, 10);
   
-//     const message = await db.getMessageById(Number(messageId));
+    const message = await db.getMessageById(Number(messageId));
   
-//     if (!message) {
-//         res.status(404).send("Message not found");
-//     }
+    if (!message) {
+        res.status(404).send("Message not found");
+    }
+
+    console.log(message)
   
-//     res.render('message', { message: message });
-// });
+    res.render('message', { message: message });
+});
 
 async function getAllMessages(req, res ) {
     const messages = await db.getMessages();
@@ -27,4 +29,4 @@ async function addNewMessage(req, res) {
 }
 
 
-module.exports = { getAllMessages, addNewMessage }
+module.exports = { getAllMessages, addNewMessage, getMessageById }
