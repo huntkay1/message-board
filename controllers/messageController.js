@@ -1,25 +1,23 @@
-const db = require('../db');
 const asyncHandler = require("express-async-handler");
+const db = require('../db/queries');
 
 
-const getMessageById = asyncHandler(async (req, res) => {
-    const messageId = parseInt(req.params.id, 10);
+// const getMessageById = asyncHandler(async (req, res) => {
+//     const messageId = parseInt(req.params.id, 10);
   
-    const message = await db.getMessageById(Number(messageId));
+//     const message = await db.getMessageById(Number(messageId));
   
-    if (!message) {
-        res.status(404).send("Message not found");
-    }
+//     if (!message) {
+//         res.status(404).send("Message not found");
+//     }
   
-    res.render('message', { message: message });
-});
+//     res.render('message', { message: message });
+// });
 
-const addNewMessage = (req, res) => {
-    const message = req.body;
-
-    db.addNewMessage(message)
-    
-    res.redirect('/');
+async function getAllMessages(req, res ) {
+    const messages = await db.getMessages();
+    res.render('index', { messages: messages})
 }
 
-module.exports = { getMessageById, addNewMessage }
+
+module.exports = { getAllMessages }
