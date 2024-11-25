@@ -19,5 +19,12 @@ async function getAllMessages(req, res ) {
     res.render('index', { messages: messages})
 }
 
+async function addNewMessage(req, res) {
+    const message = req.body;
+    await db.addMessage(message);
+    console.log(message)
+    res.redirect('/');
+}
 
-module.exports = { getAllMessages }
+
+module.exports = { getAllMessages, addNewMessage }
